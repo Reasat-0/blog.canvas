@@ -37,8 +37,8 @@
                             {{--<td><img src="{{$post->featured}}"  height="50px" width="70px" alt=""></td>--}}
 
                             <td>post_id</td>
-                            <td><a href="{{ route('tag.edit',['id' => $post->id]) }}" class="btn btn-info ">Edit</a></td>
-                            <td><a href="{{route('tag.delete',['id'=>$post->id])}}" class="btn btn-danger">Delete</a></td>
+                            <td><a href="{{ route('tag.edit',['id' => $tag->id]) }}" class="btn btn-info ">Edit</a></td>
+                            <td><a href="{{route('tag.delete',['id'=>$tag->id])}}" class="btn btn-danger">Delete</a></td>
 
 
                         </tr>

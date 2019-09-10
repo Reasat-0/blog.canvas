@@ -24,7 +24,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.BlogTag.create');
     }
 
     /**
@@ -51,8 +51,8 @@ class TagController extends Controller
 
         ]);
 
-        session()->flash('success','Tags added to Database');
-        return redirect()->route(tag.view);
+        session()->flash('success','Tags is saved to Database');
+        return redirect()->route('tag.view');
     }
 
     /**

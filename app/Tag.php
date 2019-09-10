@@ -14,11 +14,5 @@ class Tag extends Model
 
 
 
-
-
-
-
-
-
-    protected $fillabe = [ 'tag' ];
+    protected $fillable = [ 'tag' ];
 }
