@@ -15,7 +15,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/test',function (){
+
+
+    return App\profile::find(1)->User;
+
+});
+
 Auth::routes();
+
 
 
 
@@ -34,8 +42,9 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'],function(){
         'uses' => 'BlogCategoryController@index',
         'as'   => 'category'
 
-
     ]);
+
+
 
 
     Route::get('/category/create',[
@@ -200,6 +209,23 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'],function(){
 
         'uses'  => 'TagController@destroy',
         'as'    => 'tag.delete'
+    ]);
+
+
+
+
+
+
+
+
+
+
+    Route::get('/view/user',[
+
+
+        'uses'  => 'UserController@index',
+        'as'    => 'user.view'
+
     ]);
 
 

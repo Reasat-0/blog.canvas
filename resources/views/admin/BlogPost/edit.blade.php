@@ -32,12 +32,41 @@
 
                         @foreach ($category as $cat)
 
-                            <option value="{{$cat->id}}">{{$cat->name}}</option>
+                            <option value="{{$cat->id}}"
+
+                                        @if($post->category->id == $cat->id)
+
+                                            selected
+
+                                            @endif
+                            >{{$cat->name}}</option>
 
                         @endforeach
 
 
                     </select>
+                </div>
+                <div class="form-group">
+                    <label for="tag">Tags</label>
+
+
+                    @foreach($tags as $tag)
+
+                    <div class="checkbox">
+
+                        <label><input type="checkbox"  name="tags[]" value="{{ $tag->id }}"
+                                      @foreach($post->tags as $t)
+
+                                        @if($tag->id == $t->id)
+
+                                            checked
+
+                                        @endif
+                                      @endforeach>{{ $tag->tag }}</label>
+
+                    </div>
+                    @endforeach
+
                 </div>
                 <div class="form-group">
                     <label for="content">Content</label>

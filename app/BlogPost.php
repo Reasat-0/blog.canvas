@@ -12,7 +12,7 @@ class BlogPost extends Model
         return $this->belongsTo('App\Category');
     }
 
-    public function Tag(){
+    public function Tags(){
         return $this->belongsToMany('App\Tag');
     }
 
@@ -32,6 +32,5 @@ class BlogPost extends Model
     protected $fillable = [
 
         'title','category_id','featured' , 'content','slug'
-
-        ];
+     ];
 }

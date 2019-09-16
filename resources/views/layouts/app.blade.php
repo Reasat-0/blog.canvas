@@ -1,6 +1,4 @@
 
-
-
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -86,6 +84,17 @@
 
                     <div class="col-lg-4">
                         <ul class="list-group">
+
+                            <li class="list-group-item">
+                                <a href="test/relation">Relation</a>
+                            </li>
+
+
+
+
+
+
+
                             <li class="list-group-item">
                                 <a href="{{ route('home') }}">Home</a>
                             </li>
@@ -117,6 +126,12 @@
                             <li class="list-group-item">
                                 <a href={{route('post.viewTrashed')}}>Trashed Posts</a>
                             </li>
+
+                            <li class="list-group-item">
+                                <a href={{route('user.view')}}>Users</a>
+                            </li>
+
+
                         </ul>
 
                     </div>

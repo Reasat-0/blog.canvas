@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\BlogPost;
+use App\Tag;
 use Illuminate\Http\Request;
 
 class BlogPostController extends Controller
@@ -31,7 +32,7 @@ class BlogPostController extends Controller
             session()->flash('required_cat', 'You need to have a category to create a new post');
             return redirect()->back();
         }
-        return view('admin.BlogPost.create')->with('category',$categories);
+        return view('admin.BlogPost.create')->with('category',$categories)->with('tags',Tag::all());
     }
 
     /**
@@ -47,10 +48,11 @@ class BlogPostController extends Controller
 
         $this->validate($request, [
 
-            'title'     => 'required',
-            'featured_image'  => 'required|image',
-            'blog_content'   => 'required',
-            'category_id'  => 'required'
+            'title'             => 'required',
+            'featured_image'    => 'required|image',
+            'blog_content'      => 'required',
+            'category_id'       => 'required',
+            'tags'              => 'required'
 
         ]);
 
@@ -59,6 +61,9 @@ class BlogPostController extends Controller
         $image_name = time().$image->getClientOriginalName();
         $path = 'uploads/posts/';
         $image->move($path,$image_name);
+
+
+
 
     /*    $post = new Post();
 
@@ -78,6 +83,13 @@ class BlogPostController extends Controller
             'content'           => $request->blog_content,
             'slug'              => $request->title
         ]);
+
+        //Adding tag to the post in pivot table with many to many relationship
+
+        $post->Tags()->attach($request->tags); #attach method includes the pivot table
+
+
+
 
         session()->flash('success','Post is created');
 
@@ -110,7 +122,8 @@ class BlogPostController extends Controller
         $post = BlogPost::find($id);
         //$category = Category::all();
 
-        return view('admin.BlogPost.edit')->with('post', $post)->with('category', Category::all());
+        return view('admin.BlogPost.edit')->with('post', $post)->with('category', Category::all())
+                                                ->with('tags',Tag::all());
     }
 
     /**
@@ -126,10 +139,10 @@ class BlogPostController extends Controller
 
         $this->validate($request,[
 
-            'title'    => 'required',
-            'category_id' => 'required',
-            'blog_content'  => 'required'
-
+            'title'         => 'required',
+            'category_id'   => 'required',
+            'blog_content'  => 'required',
+            'tags'          => 'required'
         ]);
 
         if($request->hasFile('featured_image')){
@@ -147,6 +160,8 @@ class BlogPostController extends Controller
         $post->title = $request->title;
         $post->category_id = $request->category_id;
         $post->content = $request->blog_content;
+
+        $post->Tags()->sync($request->tags);
 
 
         $post->save();

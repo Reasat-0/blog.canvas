@@ -13,6 +13,32 @@
 
 
 
+{{--            Error Message showing part                  --}}
+
+
+            @if(count($errors) > 0)
+
+                <ul class="list-group">
+
+                    @foreach($errors->all() as $error)
+
+                        <li class="list-group-item-danger">
+
+                            {{ $error }}
+
+                        </li>
+
+
+
+
+                    @endforeach
+
+
+                </ul>
+
+            @endif
+
+
             <form action="{{route('post.store')}}" method="post" enctype="multipart/form-data">
 
                 {{ csrf_field() }}
@@ -42,6 +68,23 @@
 
                     </select>
                 </div>
+
+                <div class="form-group">
+                    <label for="tags">Post Tags</label>
+
+                        @foreach($tags as $tag)
+                        <div class="checkbox">
+
+                            <label><input type="checkbox"  name="tags[]" value="{{ $tag->id }}">{{ $tag->tag }}</label>
+
+                        </div>
+                        @endforeach
+
+
+                </div>
+
+
+
                 <div class="form-group">
                     <label for="content">Content</label>
                     <textarea name="blog_content" id="content" cols="5" rows="10" class="form-control z-depth-1"></textarea>
@@ -57,27 +100,7 @@
 
 
 
-            @if(count($errors) > 0)
 
-                <ul class="list-group">
-
-                    @foreach($errors->all() as $error)
-
-                        <li class="list-group-item-danger">
-
-                            {{ $error }}
-
-                        </li>
-
-
-
-
-                    @endforeach
-
-
-                </ul>
-
-            @endif
 
 
 
