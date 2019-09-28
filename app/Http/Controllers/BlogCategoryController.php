@@ -111,6 +111,11 @@ class BlogCategoryController extends Controller
     {
         $catId = Category::find($id);
 
+        foreach ($catId->BlogPost as $post) {
+            
+            $post->forceDelete();
+        }
+
         $catId->delete();
 
         session()->flash('success', 'Category Deleted');

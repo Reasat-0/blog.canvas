@@ -23,9 +23,9 @@ class UsersTableSeeder extends Seeder
         App\profile:: create([
 
             'user_id' => $user->id,
-            'avatar' => 'uploads/avatar/1.jpg',
+            'avatar' => 'uploads/avatar/download_reasat.jpg',
             'about'  => 'He is a genious',
-            'facebook' => 'facebook.com'
+            'facebook' => 'http://www.facebook.com'
 
         ]);
     }

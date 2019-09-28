@@ -11,9 +11,59 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[
+
+    'uses' => 'FrontEndController@index',
+    'as'   => 'index'
+
+]);
+
+Route::get('/post/{slug}',[
+    'uses'  => 'FrontEndController@single_post',
+    'as'    => 'post.single'
+]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Route::get('/test',function (){
 
@@ -227,6 +277,96 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'],function(){
         'as'    => 'user.view'
 
     ]);
+
+    Route::get('/create/user',[
+
+        'uses' => 'UserController@create',
+        'as'   => 'user.create'
+
+    ]);
+
+    Route::post('/store/user',[
+
+        'uses'  => 'UserController@store',
+        'as'    =>  'user.store'
+
+    ]);
+
+    Route::get('/make/admin/{id}',[
+
+       'uses'   => 'UserController@make_admin',
+       'as'     => 'make.admin'
+
+    ]);
+
+    Route::get('/make/cancel/admin/{id}',[
+
+        'uses'   => 'UserController@to_no_admin',
+        'as'     => 'cancel.admin'
+
+    ]);
+
+
+
+
+
+
+
+
+
+
+
+    Route::get('/profile/user',[
+
+        'uses'  => 'ProfileController@index',
+        'as'    => 'user.profile'
+
+    ]);
+
+
+
+    Route::post('/profile/user/update',[
+
+        'uses'  => 'ProfileController@update',
+        'as'    => 'profile.update'
+    ]);
+
+    Route::get('/delete/profile/{id}',[
+
+        'uses'  => 'ProfileController@destroy',
+        'as'    => 'delete.profile'
+    ]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    Route::post('settings/update',[
+
+        'uses'  => 'SettingController@update',
+        'as'    => 'settings.update'
+    ]);
+
+    Route::get('settings/view',[
+
+        'uses'  => 'SettingController@index',
+        'as'    => 'settings.view'
+
+    ]);
+
+
+
 
 
 

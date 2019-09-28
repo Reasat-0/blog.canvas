@@ -9,4 +9,6 @@ class profile extends Model
     public function User(){
         return $this->belongsTo('App\User');
     }
+
+    protected $fillable = [ 'user_id', 'about' , 'avatar'  , 'facebook'];
 }

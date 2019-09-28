@@ -36,7 +36,14 @@
                             <td>{{ $tag->tag }}</td>
                             {{--<td><img src="{{$post->featured}}"  height="50px" width="70px" alt=""></td>--}}
 
-                            <td>post_id</td>
+                            <td>
+
+                                {{ $tag->blog_post_id }}
+
+
+
+
+                            </td>
                             <td><a href="{{ route('tag.edit',['id' => $tag->id]) }}" class="btn btn-info ">Edit</a></td>
                             <td><a href="{{route('tag.delete',['id'=>$tag->id])}}" class="btn btn-danger">Delete</a></td>
 
@@ -48,7 +55,7 @@
 
                 @else
 
-                    ta
+
                     <tr>
                         <td colspan="5" class="text-center" > There is no Tag</td>
                     </tr>

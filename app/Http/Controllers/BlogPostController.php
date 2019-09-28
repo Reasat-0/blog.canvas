@@ -29,8 +29,8 @@ class BlogPostController extends Controller
         $categories = Category::all();
         if(count($categories) == 0)
         {
-            session()->flash('required_cat', 'You need to have a category to create a new post');
-            return redirect()->back();
+            session()->flash('info', 'You need to have a category to create a new post');
+            return redirect()->route('category.create');
         }
         return view('admin.BlogPost.create')->with('category',$categories)->with('tags',Tag::all());
     }
@@ -93,7 +93,7 @@ class BlogPostController extends Controller
 
         session()->flash('success','Post is created');
 
-        return redirect()->route('post.create');
+        return redirect()->route('post.view');
 
 
 
@@ -148,7 +148,7 @@ class BlogPostController extends Controller
         if($request->hasFile('featured_image')){
 
             $imageName = $request->featured_image;
-            $path = 'uploads/path/';
+            $path = 'uploads/posts/';
             $newName = time().$imageName->getClientOriginalName();
 
             $image = move($path, $newName);

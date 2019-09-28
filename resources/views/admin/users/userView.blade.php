@@ -11,7 +11,7 @@
             <table class="table">
                 <thead class="thead-dark">
                 <th>
-                    image
+                    Image
                 </th>
 
                 <th>
@@ -20,10 +20,6 @@
 
                 <th>
                     Type
-                </th>
-
-                <th>
-                    Update
                 </th>
 
                 <th>
@@ -37,14 +33,35 @@
                     @foreach($users as $user)
                         <tr>
 
-                            <td><img src="{{ asset($user->profile->avatar) }}"  height="50px" width="50px" style="border-radius: 50%" alt=""></td>
+                            <td><img src="{{ asset(@$user->profile->avatar) }}"  height="50px" width="50px" style="border-radius: 50%" alt=""></td>
                             <td>{{ $user->name }}</td>
 
+                            <td>
+
+                                @if($user->admin == 1)
+
+                                    <a href="{{ route('cancel.admin',['id'=> $user->id]) }}" class="btn btn-danger"> Make User </a>
 
 
-                            <td>Permissions</td>
-                            <td><a href="" class="btn btn-info ">Edit</a></td>
-                            <td><a href="" class="btn btn-danger">Trash</a></td>
+                                    @else
+
+                                    <a href="{{ route('make.admin',['id'=>$user->id]) }}" class="btn btn-success"> Make Admin</a>
+
+
+                                @endif
+
+
+
+
+                            </td>
+
+                            <td>
+
+                                @if(Auth::id() !== $user->id)
+                                <a href="{{ route('delete.profile',['id'=>$user->id]) }}" class="btn btn-danger">Trash</a>
+                                @endif
+
+                            </td>
 
 
                         </tr>
